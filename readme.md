@@ -16,4 +16,5 @@ This plugin shows you the basics of
  #### releases
 
 1.1  updated readme.md file, added code comments.
+
 1.0  initial release
