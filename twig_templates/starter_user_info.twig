@@ -1,5 +1,16 @@
+{#
+	These Alias Modules use the settings-form to add settings if needed.
+	Settings are created and updated only on saving of the Settings form, and aren't changed live.
+
+	Because at creation-time of the Alias Module the __node__ settings are not yet created,
+	you will need to provide a default value if you're working with form-settings, as you can see in the example below.
+
+	__node__.starter_user is the value of the form-field 'starter_user', which is used to select the userid that we want to show.
+
+	{% set user = __node__.starter_user|default( 1 ) %}
+#}
 {% set userid = __node__.starter_user|default( function( 'get_current_user_id' ) ) %}
-{% set userdata = User(userid) %}
+{% set userdata = User( userid ) %}
 <div class="uk-tile uk-tile-muted uk-padding-small uk-grid-small" uk-grid>
 	<div class="uk-width-1-1 uk-width-1-3@s">
 		<img data-src="{{userdata.avatar}}" uk-img>

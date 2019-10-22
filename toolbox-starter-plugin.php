@@ -4,14 +4,14 @@
  Plugin Name: Toolbox Starter Plugin
  Plugin URI: https://www.toolboxstarterplugin.com/
  Description: Starter Plugin for Toolbox, Using Timber
- Version: 1.0
+ Version: 1.1
  Author: Didou Schol
  Text Domain: textdomain
  Domain Path: /languages
  Author URI: https://www.badabing.nl
  */
 
-define( 'TOOLBOXSTARTER_VERSION' 	, '1.0' );
+define( 'TOOLBOXSTARTER_VERSION' 	, '1.1' );
 define( 'TOOLBOXSTARTER_DIR'		, plugin_dir_path( __FILE__ ) );
 define( 'TOOLBOXSTARTER_FILE'		, __FILE__ );
 define( 'TOOLBOXSTARTER_URL' 		, plugins_url( '/', __FILE__ ) );
@@ -25,6 +25,12 @@ include_once( 'lib/starter.inc.php' );
  */
 add_filter( 'toolbox_twig_views_locations'      , '\starter\add_twigs_dir' , 25 ,1  );
 
+/**
+ * add plugin twig filters
+ */
 add_filter( 'timber/twig' 						, '\starter\add_twig_filters' );
 
+/**
+ * register alias modules with a high priority #
+ */
 add_action( 'init' 								, '\starter\register_alias_modules' , 100 , 1 );

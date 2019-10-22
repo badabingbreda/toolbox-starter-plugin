@@ -11,16 +11,33 @@
 	'description' => __( 'Starter User Info', 'textdomain' ),
 	'group'			=> __( 'Starter Plugin', 'textdomain' ),
 	'category'    => __('User', 'textdomain'),
+    // path to a custom svg icon (20x20 pixels)
     'icon'            => TOOLBOXSTARTER_DIR . 'modules/user_info.svg',
 	'enabled'           => true,
 	'settings'    => array(
+
+        // Method 1: include the twig template using twig include, useful for future updates where all instances
+        //              of this Alias Module require the same update. Plugin needs to remain installed and active.
 		'timber_template'         => "{% include 'starter_user_info.twig' %}",
+
+        // Method 2: this will copy the file's content into the timber templates as a starter template. If there are no
+        //              dependecies on plugin files THIS plugin can be deactivated and/or uninstalled. Updates to the twig file
+        //              will not propagate to existing instances of the Alias Module, but WILL be used for new instances.
+        //
+        // 'timber_template'         => file_get_contents( TOOLBOXSTARTER_DIR . 'twig_templates/starter_user_info.twig' ),
+
+        // OPTIONAL: settings_form_name. If your Module takes settings you can refer to the settings_form here. The form
+        //              needs to be registered seperately.
 		'settings_form_name'	=> 'toolbox_starter_user_info_settings',
 	),
 ) );
 
-
+/**
+ * Callback used to return the users of this WP site
+ * @return array
+ */
 function starter_return_users() {
+
     $select_options = array();
 
     // get the list of users
